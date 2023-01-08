@@ -1,11 +1,30 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client'
-import App from './App';
+import ReactDOM from 'react-dom/client';
+import App from './App'; 
+import reducer from "./Redux/Reducers";
+import { Provider } from "react-redux";
 
+import { Fragment } from 'react';
+import { ThemeProvider } from './Providers/ThemeProvider';
+import { createStore } from "redux";
 
-const root = createRoot(document.getElementById('root'));
+const store = createStore(reducer)
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <App />
+  <Fragment>
+
+  <Provider store={store}>
+    <ThemeProvider>
+      
+      <App />
+
+    </ThemeProvider>
+  </Provider>
+
+
+  </Fragment>
+
 );
 
-// export default App;
+
